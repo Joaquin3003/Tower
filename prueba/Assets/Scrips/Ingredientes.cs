@@ -74,7 +74,7 @@ public class Ingredientes : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible()
+    /*void OnBecameInvisible()
     {
         GameObject panelMenu = GameObject.Find("PanelMenuPrincipal"); // Busca el panel en la escena
 
@@ -86,7 +86,7 @@ public class Ingredientes : MonoBehaviour
             }
             Destroy(gameObject);
         }
-    }
+    }*/
 
     private IEnumerator ActivateGameOver()
     {
