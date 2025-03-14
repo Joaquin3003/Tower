@@ -1451,10 +1451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987a1152705c0cf4d95db74ef02b232e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1817609968}
   highScoreText: {fileID: 735404410}
   ShadowScoreText: {fileID: 1817609968}
-  ShadowHighScoreText: {fileID: 0}
+  ShadowHighScoreText: {fileID: 735404410}
 --- !u!114 &219875970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,7 +1837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -16}
+  m_AnchoredPosition: {x: 0, y: -15.999939}
   m_SizeDelta: {x: -1340, y: -2988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316666022
@@ -2165,9 +2165,9 @@ Transform:
   m_GameObject: {fileID: 457201480}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -540.03, y: -939, z: 0.37}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -540.03, y: -928.9199, z: 0.37}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1624261817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3162,8 +3162,8 @@ Transform:
   m_GameObject: {fileID: 627564122}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.7207, y: 5.973, z: -0.24324471}
-  m_LocalScale: {x: 3.1234496, y: 0.07543974, z: 1}
+  m_LocalPosition: {x: 18.7207, y: 6.1865, z: -0.24324471}
+  m_LocalScale: {x: 4.7032905, y: 0.09680365, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1735768458}
@@ -4372,7 +4372,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 9.7535, y: 17.359}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893757599
 MonoBehaviour:
@@ -5166,7 +5166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1018483837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8276,7 +8276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1735768458
 Transform:
   m_ObjectHideFlags: 0
@@ -10545,7 +10545,7 @@ Transform:
   m_GameObject: {fileID: 1997959146}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -540.03, y: -966.12, z: 1.77}
+  m_LocalPosition: {x: -540.03, y: -965.3, z: 1.77}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
