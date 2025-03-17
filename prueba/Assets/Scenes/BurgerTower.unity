@@ -550,9 +550,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
-  m_AngularDrag: 10
+  m_AngularDrag: 0.05
   m_GravityScale: 0.3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3662,8 +3662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 580.66754, y: -179.09961}
-  m_SizeDelta: {x: 1051.1624, y: 243.4378}
+  m_AnchoredPosition: {x: 388, y: -179.09961}
+  m_SizeDelta: {x: 743.68, y: 179.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &735404409
 CanvasRenderer:
@@ -4567,7 +4567,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -4739,7 +4739,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -5665,7 +5665,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -5912,7 +5912,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -6540,8 +6540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -162, y: 150}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -117.478455, y: 104.43091}
+  m_SizeDelta: {x: 210.9569, y: 208.8618}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357473492
 MonoBehaviour:
@@ -6986,7 +6986,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -7158,7 +7158,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -7541,8 +7541,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 157, y: 333.44}
-  m_SizeDelta: {x: 1.5211, y: 3.1174}
+  m_AnchoredPosition: {x: 127, y: 296}
+  m_SizeDelta: {x: 1.2757, y: 2.5313}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520436088
 MonoBehaviour:
@@ -7737,7 +7737,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -8071,7 +8071,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 3.1574707}
-  m_SizeDelta: {x: 344.9066, y: 331.8411}
+  m_SizeDelta: {x: 251.6647, y: 257.0415}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1642144483
 MonoBehaviour:
@@ -8329,7 +8329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1744138009
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8993,7 +8993,7 @@ GameObject:
   - component: {fileID: 1817609967}
   - component: {fileID: 1817609968}
   m_Layer: 5
-  m_Name: PuntosSombra
+  m_Name: Puntos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9015,8 +9015,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 575.46, y: -401.1678}
-  m_SizeDelta: {x: 1061.6, y: 200.6985}
+  m_AnchoredPosition: {x: 397, y: -354}
+  m_SizeDelta: {x: 754.11, y: 121.3487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1817609967
 CanvasRenderer:
@@ -9458,7 +9458,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3
@@ -10207,7 +10207,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.3

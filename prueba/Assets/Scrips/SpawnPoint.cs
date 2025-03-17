@@ -24,10 +24,9 @@ public class SpawnPoint : MonoBehaviour
 
     private ScoreManager scoreManager;
     private float originalMoveSpeed;
-
     public int ingredientesDestruidos = 0; // Contador de ingredientes destruidos
 
-    // Nueva variable: Guardar la posición inicial del Spawn Point
+    // Guardar la posición inicial del Spawn Point
     private Vector3 posicionInicial;
 
     void Start()
@@ -51,18 +50,29 @@ public class SpawnPoint : MonoBehaviour
 
         if (!isPaused)
         {
+            // Movimiento del spawn point
             transform.position += Vector3.right * moveSpeed * Time.deltaTime;
 
-            if (transform.position.x > horizontalLimit || transform.position.x < -horizontalLimit)
+            // Corrección del rebote en los límites
+            if (transform.position.x >= horizontalLimit)
             {
-                moveSpeed *= -1;
+                transform.position = new Vector3(horizontalLimit, transform.position.y, transform.position.z);
+                moveSpeed = -Mathf.Abs(moveSpeed); // Asegurar que el movimiento sea negativo
+            }
+            else if (transform.position.x <= -horizontalLimit)
+            {
+                transform.position = new Vector3(-horizontalLimit, transform.position.y, transform.position.z);
+                moveSpeed = Mathf.Abs(moveSpeed); // Asegurar que el movimiento sea positivo
             }
         }
 
         if (currentIngredient != null && isIngredientMoving)
         {
             currentIngredient.transform.position = new Vector3(
-                transform.position.x, currentIngredient.transform.position.y,currentIngredient.transform.position.z);
+                transform.position.x,
+                currentIngredient.transform.position.y,
+                currentIngredient.transform.position.z
+            );
         }
 
         if (Input.GetMouseButtonDown(0) && currentIngredient != null && isIngredientMoving)
@@ -78,26 +88,23 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
-    // Nuevo método para detectar ingredientes destruidos
     public void OnIngredientDestroyed(GameObject ingredient)
     {
         if (ingredient.CompareTag("Ingrediente"))
         {
             Debug.Log("Destruyendo ingrediente...");
-            ingredientesDestruidos++;  // Incrementar el contador de ingredientes destruidos
+            ingredientesDestruidos++;
 
-            // Llamamos a la función que maneja la vida y destrucción
             if (LifeManager.Instance != null)
             {
-                LifeManager.Instance.PerderIngrediente(); // Restar una vida al perder un ingrediente
-                Debug.Log("Vidas restantes: " + LifeManager.Instance.GetIngredientesRestantes()); // Ahora se puede llamar sin errores
+                LifeManager.Instance.PerderIngrediente();
+                Debug.Log("Vidas restantes: " + LifeManager.Instance.GetIngredientesRestantes());
             }
             else
             {
                 Debug.LogError("LifeManager.Instance es NULL. No se puede restar una vida.");
             }
 
-            // Si se han destruido 3 ingredientes o más, activar el ingrediente final
             if (ingredientesDestruidos >= 3 && !hasFinalIngredientSpawned)
             {
                 Debug.Log("SE ACTIVARÁ EL INGREDIENTE FINAL");
@@ -106,7 +113,6 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
-    // Asegurar que los ingredientes sean destruidos correctamente
     public void OnIngredientLanded(GameObject ingredient)
     {
         if (ingredient.CompareTag("IngredienteFinal"))
@@ -116,34 +122,33 @@ public class SpawnPoint : MonoBehaviour
             return;
         }
 
-        currentIngredient = null;  // Limpiar el ingrediente actual
-        StartCoroutine(SpawnNextIngredient()); // Empezar el spawn después de 0.5 segundos
+        currentIngredient = null;
+        StartCoroutine(SpawnNextIngredient());
     }
 
     private IEnumerator SpawnNextIngredient()
     {
-        yield return new WaitForSeconds(0.1f); // Esperar 0.5 segundos antes de spawnear el siguiente ingrediente
-        SpawnIngredient(); // Crear un nuevo ingrediente
+        yield return new WaitForSeconds(0.1f);
+        SpawnIngredient();
     }
 
     public void SpawnIngredient()
     {
-        if (currentIngredient != null) return; // No spawnar si ya hay un ingrediente en pantalla
+        if (currentIngredient != null) return;
 
-        int randomIndex = Random.Range(0, ingredientes.Length); // Seleccionar un ingrediente aleatorio
+        int randomIndex = Random.Range(0, ingredientes.Length);
         currentIngredient = Instantiate(ingredientes[randomIndex], transform.position, Quaternion.identity);
-        currentIngredient.GetComponent<Rigidbody2D>().isKinematic = true; // Dejar el ingrediente inmóvil por ahora
+        currentIngredient.GetComponent<Rigidbody2D>().isKinematic = true;
 
-        currentIngredient.transform.position += new Vector3(0, currentIngredient.transform.position.y, 0);
+        currentIngredient.transform.position += new Vector3(0, 0, currentIngredient.transform.position.y * 0.01f);
 
-        // Registrar el ingrediente en LogicaBotones
         LogicaBotones logicaBotones = FindObjectOfType<LogicaBotones>();
         if (logicaBotones != null)
         {
             logicaBotones.RegistrarIngrediente(currentIngredient);
         }
 
-        isIngredientMoving = true; // Hacer que el ingrediente comience a moverse
+        isIngredientMoving = true;
     }
 
     private bool IsPointerOverUI()
@@ -166,7 +171,7 @@ public class SpawnPoint : MonoBehaviour
         moveSpeed = 0f;
         if (currentIngredient != null)
         {
-            currentIngredient.GetComponent<Rigidbody2D>().isKinematic = false; //si queda en true se genera el bug de no fisicas sobre el ingrediente que esté cayendo.
+            currentIngredient.GetComponent<Rigidbody2D>().isKinematic = true;
         }
     }
 
@@ -224,12 +229,12 @@ public class SpawnPoint : MonoBehaviour
     private IEnumerator DetenerSpawnCoroutine(float tiempo)
     {
         isPaused = true;
-        moveSpeed = 0f; // Detener el movimiento
+        moveSpeed = 0f;
 
         yield return new WaitForSeconds(tiempo);
 
         isPaused = false;
-        moveSpeed = originalMoveSpeed; // Restaurar la velocidad original correctamente
+        moveSpeed = originalMoveSpeed;
     }
 
     void ReiniciarIngredientes()
@@ -244,33 +249,28 @@ public class SpawnPoint : MonoBehaviour
         Debug.Log("Ingredientes reiniciados.");
     }
 
-    // Nuevo método: Reiniciar posición del Spawn Point y contador de ingredientes
     public void ResetearSpawnPoint()
     {
-        gameObject.SetActive(true); // Reactivar el SpawnPoint si estaba desactivado
+        gameObject.SetActive(true);
+        transform.position = posicionInicial;
+        ingredientesContados = 0;
+        hasFinalIngredientSpawned = false;
+        isSpawningDisabled = false;
+        ingredientesDestruidos = 0;
 
-        transform.position = posicionInicial; // Restaurar la posición inicial
-        ingredientesContados = 0; // Reiniciar contador
-        hasFinalIngredientSpawned = false; // Resetear el flag del ingrediente final
-        isSpawningDisabled = false; // Asegurar que el spawn esté habilitado
-        ingredientesDestruidos = 0; // Reiniciar el contador de ingredientes destruidos
-
-        // Eliminar el ingrediente actual si existe
         if (currentIngredient != null)
         {
             Destroy(currentIngredient);
             currentIngredient = null;
         }
 
-        // FORZAR UN NUEVO INGREDIENTE
         StartCoroutine(ForzarSpawn());
-
         Debug.Log("Spawn Point reiniciado. Contador de ingredientes destruidos en 0.");
     }
 
     private IEnumerator ForzarSpawn()
     {
-        yield return new WaitForSeconds(0.2f); // Pequeña espera para asegurar que el reset se complete
+        yield return new WaitForSeconds(0.2f);
         SpawnIngredient();
     }
 
@@ -281,9 +281,9 @@ public class SpawnPoint : MonoBehaviour
 
     IEnumerator EsperarYVerificarIngrediente()
     {
-        yield return new WaitForSeconds(0.2f); // Esperar 0.2 segundos
+        yield return new WaitForSeconds(0.2f);
 
-        if (currentIngredient == null) // Si no hay ingrediente, generamos uno nuevo
+        if (currentIngredient == null)
         {
             SpawnIngredient();
             Debug.Log("No había ingrediente en el SpawnPoint. Se generó uno nuevo.");
@@ -292,7 +292,7 @@ public class SpawnPoint : MonoBehaviour
 
     void VerificarYSpawnIngrediente()
     {
-        if (currentIngredient == null) // Si no hay ingrediente, generar uno nuevo
+        if (currentIngredient == null)
         {
             SpawnIngredient();
             Debug.Log("No había ingrediente en el SpawnPoint. Se generó uno nuevo.");
