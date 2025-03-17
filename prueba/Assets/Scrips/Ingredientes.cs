@@ -56,14 +56,11 @@ public class Ingredientes : MonoBehaviour
                 spawner.DisableSpawning();
                 spawner.SpawnFinalIngredient();
                 ScoreManager.Instance.StopCounting();
-
-                // Restar una vida cuando se destruyen 3 ingredientes
-                if (LifeManager.Instance != null)
-                {
-                    LifeManager.Instance.PerderIngrediente(); // Restar una vida por colisión con el borde
-                }
             }
-
+            if (LifeManager.Instance != null)
+            {
+                LifeManager.Instance.PerderIngrediente(); // Restar una vida por colisión con el borde
+            }
             Destroy(gameObject);  // Destruir el ingrediente independientemente de cuántos ingredientes se hayan destruido
         }
 
@@ -88,6 +85,7 @@ public class Ingredientes : MonoBehaviour
         }
     }*/
 
+    
     private IEnumerator ActivateGameOver()
     {
         yield return new WaitForSeconds(0.1f); // Espera para dar tiempo al último ingrediente a caer

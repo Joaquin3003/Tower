@@ -18,12 +18,12 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    /*private void OnTriggerExit2D (Collider2D other)
     {
         // Elimina ingredientes que salgan de la pantalla
         if (other.gameObject.CompareTag("ingredientes"))
         {
             Destroy(other.gameObject);
         }
-    }
+    }*/
 }

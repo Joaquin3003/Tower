@@ -62,10 +62,7 @@ public class SpawnPoint : MonoBehaviour
         if (currentIngredient != null && isIngredientMoving)
         {
             currentIngredient.transform.position = new Vector3(
-                transform.position.x,
-                currentIngredient.transform.position.y,
-                currentIngredient.transform.position.z
-            );
+                transform.position.x, currentIngredient.transform.position.y,currentIngredient.transform.position.z);
         }
 
         if (Input.GetMouseButtonDown(0) && currentIngredient != null && isIngredientMoving)
@@ -137,7 +134,7 @@ public class SpawnPoint : MonoBehaviour
         currentIngredient = Instantiate(ingredientes[randomIndex], transform.position, Quaternion.identity);
         currentIngredient.GetComponent<Rigidbody2D>().isKinematic = true; // Dejar el ingrediente inmóvil por ahora
 
-        currentIngredient.transform.position += new Vector3(0, 0, currentIngredient.transform.position.y * 0.01f);
+        currentIngredient.transform.position += new Vector3(0, currentIngredient.transform.position.y, 0);
 
         // Registrar el ingrediente en LogicaBotones
         LogicaBotones logicaBotones = FindObjectOfType<LogicaBotones>();
@@ -169,7 +166,7 @@ public class SpawnPoint : MonoBehaviour
         moveSpeed = 0f;
         if (currentIngredient != null)
         {
-            currentIngredient.GetComponent<Rigidbody2D>().isKinematic = true;
+            currentIngredient.GetComponent<Rigidbody2D>().isKinematic = false; //si queda en true se genera el bug de no fisicas sobre el ingrediente que esté cayendo.
         }
     }
 
