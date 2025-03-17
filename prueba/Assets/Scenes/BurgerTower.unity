@@ -1693,7 +1693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.247, y: -77.6643}
+  m_AnchoredPosition: {x: 88.24707, y: -77.66406}
   m_SizeDelta: {x: 101.69, y: 109.3284}
   m_Pivot: {x: 0.5, y: 0.5000001}
 --- !u!114 &314443580
@@ -1836,9 +1836,9 @@ RectTransform:
   m_Father: {fileID: 1744138009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15.999939}
-  m_SizeDelta: {x: -1340, y: -2988}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 946.00006}
+  m_SizeDelta: {x: 66.734, y: 57.422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316666022
 MonoBehaviour:
@@ -2640,9 +2640,9 @@ RectTransform:
   m_Father: {fileID: 316666021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 38.41772}
-  m_SizeDelta: {x: -41.89892, y: -89.32811}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 33.367, y: 50.5}
+  m_SizeDelta: {x: 66.734, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &598535541
 MonoBehaviour:
@@ -2691,8 +2691,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.1
-  m_fontSizeBase: 12.1
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2727,7 +2727,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.6655655, y: 0, z: 0, w: 0}
+  m_margin: {x: 1.1080427, y: 0, z: 1.1200376, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3017,12 +3017,12 @@ GameObject:
   - component: {fileID: 619401930}
   - component: {fileID: 619401931}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Borde3
   m_TagString: Borde
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &619401929
 Transform:
   m_ObjectHideFlags: 0
@@ -3147,7 +3147,7 @@ GameObject:
   - component: {fileID: 627564124}
   - component: {fileID: 627564125}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: Borde2
   m_TagString: Borde
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3530,9 +3530,9 @@ RectTransform:
   m_Father: {fileID: 1744138009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60.023132}
-  m_SizeDelta: {x: -1280, y: -3035.9587}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 766}
+  m_SizeDelta: {x: 52, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717123138
 MonoBehaviour:
@@ -7998,7 +7998,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -8329,7 +8329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1744138009
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8706,7 +8706,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.24701, y: -77.66431}
+  m_AnchoredPosition: {x: 88.24707, y: -77.66406}
   m_SizeDelta: {x: 101.69, y: 109.32837}
   m_Pivot: {x: 0.5, y: 0.5000001}
 --- !u!114 &1796743686
@@ -9283,9 +9283,9 @@ RectTransform:
   m_Father: {fileID: 1744138009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 305}
-  m_SizeDelta: {x: -1280, y: -3053.102}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 1094}
+  m_SizeDelta: {x: 52, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828562314
 MonoBehaviour:
@@ -9588,7 +9588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.247, y: -77.6643}
+  m_AnchoredPosition: {x: 88.24707, y: -77.66406}
   m_SizeDelta: {x: 101.69, y: 109.3284}
   m_Pivot: {x: 0.5, y: 0.5000001}
 --- !u!114 &1864958135
@@ -9709,7 +9709,7 @@ GameObject:
   - component: {fileID: 1906028242}
   - component: {fileID: 1906028243}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Borde1
   m_TagString: Borde
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10020,9 +10020,9 @@ RectTransform:
   m_Father: {fileID: 1744138009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -390}
-  m_SizeDelta: {x: -1280, y: -3053.102}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 946}
+  m_SizeDelta: {x: 52, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948293267
 MonoBehaviour:
