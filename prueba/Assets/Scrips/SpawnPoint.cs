@@ -298,4 +298,17 @@ public class SpawnPoint : MonoBehaviour
             Debug.Log("No había ingrediente en el SpawnPoint. Se generó uno nuevo.");
         }
     }
+
+    public bool PuedeActivarHabilidad()
+    {
+        // La habilidad solo puede activarse si hay un ingrediente en el Spawn y NO ha sido soltado
+        if (currentIngredient != null && isIngredientMoving)
+        {
+            Debug.Log("Habilidad puede activarse: Ingrediente en Spawn y aún no ha sido soltado.");
+            return true;
+        }
+
+        Debug.Log("Habilidad bloqueada: No hay ingrediente en el Spawn o ya fue soltado.");
+        return false;
+    }
 }

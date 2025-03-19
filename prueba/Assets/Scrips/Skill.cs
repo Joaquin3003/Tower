@@ -32,11 +32,20 @@ public class Skill : MonoBehaviour
 
     public void ActivateSkill()
     {
-        // Solo permite activar la habilidad si no está en enfriamiento
-        if (!isCooldown)
+        if (isCooldown)
         {
-            StartCoroutine(HandleSkill());
+            Debug.Log("Habilidad en enfriamiento. No se puede activar.");
+            return;
         }
+
+        if (!PuedeActivarHabilidad())
+        {
+            Debug.Log("Habilidad bloqueada porque el ingrediente ya cayó o no hay ingrediente.");
+            return;
+        }
+
+        Debug.Log("Habilidad ACTIVADA correctamente.");
+        StartCoroutine(HandleSkill());
     }
 
     private IEnumerator HandleSkill()
@@ -73,5 +82,10 @@ public class Skill : MonoBehaviour
         {
             skillButton.interactable = true;
         }
+    }
+
+    private bool PuedeActivarHabilidad()
+    {
+        return spawnPoint != null && spawnPoint.PuedeActivarHabilidad();
     }
 }
