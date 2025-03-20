@@ -50,10 +50,10 @@ public class Skill : MonoBehaviour
 
     private IEnumerator HandleSkill()
     {
-        // Activa la habilidad
+        // Activa la habilidad y pausa el movimiento del SpawnPoint
         if (spawnPoint != null)
         {
-            spawnPoint.StartPauseMovement(); // Detiene el movimiento
+            spawnPoint.StartPauseMovement();
         }
 
         // Desactiva temporalmente el botón y establece el enfriamiento
@@ -67,13 +67,36 @@ public class Skill : MonoBehaviour
         // Espera el tiempo de duración de la habilidad
         yield return new WaitForSeconds(skillDuration);
 
-        // Restaura el movimiento
-        if (spawnPoint != null)
+        // Asegurar que el último ingrediente se suelta correctamente
+        GameObject ingredienteActual = GameObject.FindGameObjectWithTag("ingredientes"); // Busca el ingrediente por etiqueta
+
+        if (ingredienteActual != null)
         {
-            spawnPoint.StopPauseMovement(); // Restaura el movimiento
+            ingredienteActual.transform.parent = null; // Desvincular del SpawnPoint
+
+            // Verifica si tiene el script antes de llamar a sus métodos
+            Ingredientes ingredienteScript = ingredienteActual.GetComponent<Ingredientes>();
+            if (ingredienteScript != null)
+            {
+                ingredienteScript.SoltarIngrediente(); // Detiene el seguimiento del SpawnPoint
+            }
+            else
+            {
+                Debug.LogWarning("El ingrediente encontrado no tiene el script 'Ingrediente'.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ningún ingrediente para soltar.");
         }
 
-        // Espera el tiempo de enfriamiento
+        // Reactivar el movimiento del SpawnPoint
+        if (spawnPoint != null)
+        {
+            spawnPoint.StopPauseMovement();
+        }
+
+        // Espera el tiempo de enfriamiento restante
         yield return new WaitForSeconds(cooldownTime - skillDuration);
 
         // Habilidad lista para usar de nuevo
@@ -82,6 +105,26 @@ public class Skill : MonoBehaviour
         {
             skillButton.interactable = true;
         }
+    }
+
+    public void ResetSkill()
+    {
+        StopAllCoroutines(); // Detener cualquier corutina activa de la habilidad
+
+        isCooldown = false;
+
+        if (skillButton != null)
+        {
+            skillButton.interactable = true; // Reactivar el botón de la habilidad
+        }
+
+        if (spawnPoint != null)
+        {
+            spawnPoint.StopPauseMovement();  // Asegurar que el SpawnPoint no esté pausado
+            spawnPoint.ResetearSpawnPoint(); // Restablecer el SpawnPoint
+        }
+
+        Debug.Log("Habilidad y SpawnPoint reiniciados completamente.");
     }
 
     private bool PuedeActivarHabilidad()

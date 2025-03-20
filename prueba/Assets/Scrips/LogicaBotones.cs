@@ -20,6 +20,8 @@ public class LogicaBotones : MonoBehaviour
 
     private List<GameObject> ingredientesInstanciados = new List<GameObject>();
 
+    public SpawnPoint spawnPoint;
+
     public void Jugar()
     {
         Time.timeScale = 1f;
@@ -105,7 +107,8 @@ public class LogicaBotones : MonoBehaviour
         if (spawnPoint != null)
         {
             spawnPoint.gameObject.SetActive(true);
-            spawnPoint.ResetearSpawnPoint();
+            spawnPoint.ResetearSpawnPoint(); // Resetear el SpawnPoint
+            spawnPoint.StopPauseMovement();  // Asegurar que no esté pausado
         }
         else
         {
@@ -128,6 +131,18 @@ public class LogicaBotones : MonoBehaviour
         if (panelGameOver != null) panelGameOver.SetActive(false);
         if (panelMenuPrincipal != null) panelMenuPrincipal.SetActive(false);
         if (panelJuego != null) panelJuego.SetActive(true);
+
+        Skill skill = FindObjectOfType<Skill>();
+        if (skill != null)
+        {
+            skill.ResetSkill();
+        }
+
+        SkillButton skillButton = FindObjectOfType<SkillButton>();
+        if (skillButton != null)
+        {
+            skillButton.ResetSkillButton();
+        }
 
         Debug.Log("Juego reiniciado correctamente.");
     }

@@ -85,7 +85,11 @@ public class Ingredientes : MonoBehaviour
         }
     }*/
 
-    
+    public void SoltarIngrediente()
+    {
+        Debug.Log("Ingrediente soltado.");
+    }
+
     private IEnumerator ActivateGameOver()
     {
         yield return new WaitForSeconds(0.1f); // Espera para dar tiempo al último ingrediente a caer

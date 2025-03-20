@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,7 +26,7 @@ public class SpawnPoint : MonoBehaviour
     private float originalMoveSpeed;
     public int ingredientesDestruidos = 0; // Contador de ingredientes destruidos
 
-    // Guardar la posiciÛn inicial del Spawn Point
+    // Guardar la posici√≥n inicial del Spawn Point
     private Vector3 posicionInicial;
 
     void Start()
@@ -36,7 +36,7 @@ public class SpawnPoint : MonoBehaviour
         SpawnIngredient();
         scoreManager = FindObjectOfType<ScoreManager>();
 
-        // Guardamos la posiciÛn inicial del Spawn Point
+        // Guardamos la posici√≥n inicial del Spawn Point
         posicionInicial = transform.position;
 
         // Reiniciar contador de ingredientes destruidos
@@ -53,7 +53,7 @@ public class SpawnPoint : MonoBehaviour
             // Movimiento del spawn point
             transform.position += Vector3.right * moveSpeed * Time.deltaTime;
 
-            // CorrecciÛn del rebote en los lÌmites
+            // Correcci√≥n del rebote en los l√≠mites
             if (transform.position.x >= horizontalLimit)
             {
                 transform.position = new Vector3(horizontalLimit, transform.position.y, transform.position.z);
@@ -107,7 +107,7 @@ public class SpawnPoint : MonoBehaviour
 
             if (ingredientesDestruidos >= 3 && !hasFinalIngredientSpawned)
             {
-                Debug.Log("SE ACTIVAR¡ EL INGREDIENTE FINAL");
+                Debug.Log("SE ACTIVAR√Å EL INGREDIENTE FINAL");
                 SpawnFinalIngredient();
             }
         }
@@ -286,7 +286,7 @@ public class SpawnPoint : MonoBehaviour
         if (currentIngredient == null)
         {
             SpawnIngredient();
-            Debug.Log("No habÌa ingrediente en el SpawnPoint. Se generÛ uno nuevo.");
+            Debug.Log("No hab√≠a ingrediente en el SpawnPoint. Se gener√≥ uno nuevo.");
         }
     }
 
@@ -295,7 +295,7 @@ public class SpawnPoint : MonoBehaviour
         if (currentIngredient == null)
         {
             SpawnIngredient();
-            Debug.Log("No habÌa ingrediente en el SpawnPoint. Se generÛ uno nuevo.");
+            Debug.Log("No hab√≠a ingrediente en el SpawnPoint. Se gener√≥ uno nuevo.");
         }
     }
 
@@ -304,7 +304,7 @@ public class SpawnPoint : MonoBehaviour
         // La habilidad solo puede activarse si hay un ingrediente en el Spawn y NO ha sido soltado
         if (currentIngredient != null && isIngredientMoving)
         {
-            Debug.Log("Habilidad puede activarse: Ingrediente en Spawn y a˙n no ha sido soltado.");
+            Debug.Log("Habilidad puede activarse: Ingrediente en Spawn y a√∫n no ha sido soltado.");
             return true;
         }
 

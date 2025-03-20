@@ -1408,6 +1408,7 @@ MonoBehaviour:
   panelGameOver: {fileID: 763765456}
   boton1: {fileID: 1285876768}
   boton2: {fileID: 504144224}
+  spawnPoint: {fileID: 1346894105}
 --- !u!4 &219875967
 Transform:
   m_ObjectHideFlags: 0
@@ -1479,12 +1480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67064a1548503c245be1c2fc3790ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartSprite: {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   cooldownSprites:
-  - {fileID: 21300000, guid: ff24b0a138a2a88468ee14e07ae9d657, type: 3}
-  - {fileID: 21300000, guid: 8e64f35d43411b240b81d4e7b65b5146, type: 3}
-  - {fileID: 21300000, guid: fc86cd94ca5001b4e8946fb3944afe6c, type: 3}
-  - {fileID: 21300000, guid: 8b043497608ec894dba3eac26676012d, type: 3}
-  - {fileID: 21300000, guid: 252b3e69b45b0c344b99586c68072026, type: 3}
   - {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   skillButton: {fileID: 1520436088}
   cooldownTime: 30
@@ -2855,7 +2852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fab56696fa7529c41867dc70a6c9ac49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6aa2068dfca37ca41850efbc8baa76f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3876,7 +3873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de772ffaf6b1ee74ba5f480ec40da0f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51f583682b1ab3341a693f6c0fea657a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6807,7 +6804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de772ffaf6b1ee74ba5f480ec40da0f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51f583682b1ab3341a693f6c0fea657a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7620,7 +7617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff24b0a138a2a88468ee14e07ae9d657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7650,12 +7647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67064a1548503c245be1c2fc3790ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartSprite: {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   cooldownSprites:
-  - {fileID: 21300000, guid: ff24b0a138a2a88468ee14e07ae9d657, type: 3}
-  - {fileID: 21300000, guid: 8e64f35d43411b240b81d4e7b65b5146, type: 3}
-  - {fileID: 21300000, guid: fc86cd94ca5001b4e8946fb3944afe6c, type: 3}
-  - {fileID: 21300000, guid: 8b043497608ec894dba3eac26676012d, type: 3}
-  - {fileID: 21300000, guid: 252b3e69b45b0c344b99586c68072026, type: 3}
   - {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   skillButton: {fileID: 1520436088}
   cooldownTime: 30
@@ -10501,7 +10494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fab56696fa7529c41867dc70a6c9ac49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6aa2068dfca37ca41850efbc8baa76f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
