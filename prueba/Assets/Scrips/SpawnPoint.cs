@@ -15,9 +15,9 @@ public class SpawnPoint : MonoBehaviour
 
     private int ingredientesContados = 0;
     public GameObject currentIngredient;
-    private bool isIngredientMoving = false;
+    public bool isIngredientMoving = false;
     private bool isPaused = false;
-
+    
     public GameObject finalIngredientPrefab;
     private bool isSpawningDisabled = false;
     private bool hasFinalIngredientSpawned = false;
@@ -204,7 +204,7 @@ public class SpawnPoint : MonoBehaviour
             transform.position += new Vector3(0, currentHeightIncrement, 0);
         }
     }
-
+    
     public void DisableSpawning()
     {
         isSpawningDisabled = true;
@@ -299,16 +299,11 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
-    public bool PuedeActivarHabilidad()
+    void SoltarIngrediente()
     {
-        // La habilidad solo puede activarse si hay un ingrediente en el Spawn y NO ha sido soltado
-        if (currentIngredient != null && isIngredientMoving)
+        if (currentIngredient != null)
         {
-            Debug.Log("Habilidad puede activarse: Ingrediente en Spawn y aún no ha sido soltado.");
-            return true;
+            currentIngredient.transform.SetParent(null); // Quitar del SpawnPoint
         }
-
-        Debug.Log("Habilidad bloqueada: No hay ingrediente en el Spawn o ya fue soltado.");
-        return false;
     }
 }

@@ -50,56 +50,26 @@ public class Skill : MonoBehaviour
 
     private IEnumerator HandleSkill()
     {
-        // Activa la habilidad y pausa el movimiento del SpawnPoint
         if (spawnPoint != null)
         {
             spawnPoint.StartPauseMovement();
         }
 
-        // Desactiva temporalmente el botón y establece el enfriamiento
         if (skillButton != null)
         {
             skillButton.interactable = false;
         }
 
         isCooldown = true;
-
-        // Espera el tiempo de duración de la habilidad
         yield return new WaitForSeconds(skillDuration);
 
-        // Asegurar que el último ingrediente se suelta correctamente
-        GameObject ingredienteActual = GameObject.FindGameObjectWithTag("ingredientes"); // Busca el ingrediente por etiqueta
-
-        if (ingredienteActual != null)
-        {
-            ingredienteActual.transform.parent = null; // Desvincular del SpawnPoint
-
-            // Verifica si tiene el script antes de llamar a sus métodos
-            Ingredientes ingredienteScript = ingredienteActual.GetComponent<Ingredientes>();
-            if (ingredienteScript != null)
-            {
-                ingredienteScript.SoltarIngrediente(); // Detiene el seguimiento del SpawnPoint
-            }
-            else
-            {
-                Debug.LogWarning("El ingrediente encontrado no tiene el script 'Ingrediente'.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró ningún ingrediente para soltar.");
-        }
-
-        // Reactivar el movimiento del SpawnPoint
         if (spawnPoint != null)
         {
             spawnPoint.StopPauseMovement();
         }
 
-        // Espera el tiempo de enfriamiento restante
         yield return new WaitForSeconds(cooldownTime - skillDuration);
 
-        // Habilidad lista para usar de nuevo
         isCooldown = false;
         if (skillButton != null)
         {
@@ -127,8 +97,35 @@ public class Skill : MonoBehaviour
         Debug.Log("Habilidad y SpawnPoint reiniciados completamente.");
     }
 
-    private bool PuedeActivarHabilidad()
+    public bool PuedeActivarHabilidad()
     {
-        return spawnPoint != null && spawnPoint.PuedeActivarHabilidad();
+        if (spawnPoint != null && spawnPoint.currentIngredient != null && spawnPoint.isIngredientMoving)
+        {
+            Debug.Log("Habilidad puede activarse: Ingrediente en Spawn y aún no ha sido soltado.");
+            return true;
+        }
+
+        Debug.Log("Habilidad bloqueada: No hay ingrediente en el Spawn o ya fue soltado.");
+        return false;
+    }
+
+    void TerminarHabilidad()
+    {
+        // Encuentra el último ingrediente en pantalla
+        FinalIngredient ingredienteFinal = FindObjectOfType<FinalIngredient>();
+
+        if (ingredienteFinal != null)
+        {
+            Rigidbody2D rb = ingredienteFinal.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                rb.gravityScale = 1f;
+                rb.constraints = RigidbodyConstraints2D.None;
+            }
+        }
+
+        Debug.Log("Habilidad desactivada correctamente.");
     }
 }

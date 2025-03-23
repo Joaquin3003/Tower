@@ -32,6 +32,12 @@ public class Ingredientes : MonoBehaviour
             float offset = Mathf.Abs(transform.position.x - collision.transform.position.x);
             int puntos = (offset < 0.1f) ? 15 : 10;
             ScoreManager.Instance.AddScore(puntos);
+
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity *= 0.5f; // Reduce la velocidad al chocar
+            }
         }
 
         if (collision.gameObject.CompareTag("Base") && !hasCollided)

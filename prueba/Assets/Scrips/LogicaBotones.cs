@@ -149,7 +149,7 @@ public class LogicaBotones : MonoBehaviour
 
     void ReiniciarIngredientes()
     {
-        // Eliminar solo los ingredientes instanciados
+        // Eliminar todos los ingredientes instanciados en la lista
         foreach (GameObject ingrediente in ingredientesInstanciados)
         {
             if (ingrediente != null)
@@ -158,16 +158,30 @@ public class LogicaBotones : MonoBehaviour
             }
         }
 
-        foreach (GameObject IngredienteFinal in ingredientesInstanciados)
+        // Obtener la cámara principal
+        Camera camara = Camera.main;
+
+        // Buscar y eliminar solo los "IngredienteFinal" visibles en pantalla
+        GameObject[] ingredientesFinales = GameObject.FindGameObjectsWithTag("IngredienteFinal");
+        foreach (GameObject ingredienteFinal in ingredientesFinales)
         {
-            if (IngredienteFinal != null)
+            if (ingredienteFinal != null && EsVisibleEnPantalla(ingredienteFinal, camara))
             {
-                Destroy(IngredienteFinal);
+                Destroy(ingredienteFinal);
             }
         }
 
         ingredientesInstanciados.Clear(); // Limpiar la lista después de borrar los ingredientes
-        Debug.Log("Ingredientes instanciados eliminados.");
+        Debug.Log("Se eliminaron los ingredientes visibles, pero se dejó el de referencia.");
+    }
+
+    // Función para comprobar si un objeto es visible en la cámara
+    bool EsVisibleEnPantalla(GameObject objeto, Camera camara)
+    {
+        if (camara == null) return false;
+
+        Vector3 puntoEnPantalla = camara.WorldToViewportPoint(objeto.transform.position);
+        return (puntoEnPantalla.x >= 0 && puntoEnPantalla.x <= 1 && puntoEnPantalla.y >= 0 && puntoEnPantalla.y <= 1);
     }
 
     // Método para registrar ingredientes en la lista
