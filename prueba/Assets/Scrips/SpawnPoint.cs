@@ -25,6 +25,9 @@ public class SpawnPoint : MonoBehaviour
     private ScoreManager scoreManager;
     private float originalMoveSpeed;
     public int ingredientesDestruidos = 0; // Contador de ingredientes destruidos
+   
+    private bool isSkillActive = false;
+    public bool shouldReleaseIngredient = false;
 
     // Guardar la posición inicial del Spawn Point
     private Vector3 posicionInicial;
@@ -68,11 +71,17 @@ public class SpawnPoint : MonoBehaviour
 
         if (currentIngredient != null && isIngredientMoving)
         {
+            // Ahora el ingrediente solo sigue el movimiento del SpawnPoint mientras no haya sido liberado
             currentIngredient.transform.position = new Vector3(
                 transform.position.x,
                 currentIngredient.transform.position.y,
                 currentIngredient.transform.position.z
             );
+        }
+
+        if (shouldReleaseIngredient && isIngredientMoving)
+        {
+            ReleaseIngredient();
         }
 
         if (Input.GetMouseButtonDown(0) && currentIngredient != null && isIngredientMoving)
@@ -85,6 +94,32 @@ public class SpawnPoint : MonoBehaviour
             {
                 Debug.Log("Clic bloqueado porque fue en la UI");
             }
+        }
+    }
+
+    public void SetSkillActive(bool active)
+    {
+        isSkillActive = active;
+
+        if (!active)
+        {
+            shouldReleaseIngredient = false; // La habilidad termina, pero el ingrediente no se soltará automáticamente.
+            Debug.Log("Habilidad desactivada, pero el ingrediente no se soltará.");
+        }
+    }
+
+    public void FijarIngredienteEnSpawn()
+    {
+        if (currentIngredient != null)
+        {
+            Rigidbody2D rb = currentIngredient.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;  // Evita que el ingrediente caiga solo
+                rb.velocity = Vector2.zero;  // Detiene cualquier movimiento
+            }
+
+            currentIngredient.transform.position = transform.position; // Mantiene el ingrediente en el spawn
         }
     }
 
@@ -191,6 +226,7 @@ public class SpawnPoint : MonoBehaviour
         if (currentIngredient != null)
         {
             currentIngredient.GetComponent<Rigidbody2D>().isKinematic = false;
+            currentIngredient = null; // Evita que el Update siga afectándolo
         }
 
         ingredientesContados++;
@@ -204,7 +240,7 @@ public class SpawnPoint : MonoBehaviour
             transform.position += new Vector3(0, currentHeightIncrement, 0);
         }
     }
-    
+
     public void DisableSpawning()
     {
         isSpawningDisabled = true;
@@ -305,5 +341,11 @@ public class SpawnPoint : MonoBehaviour
         {
             currentIngredient.transform.SetParent(null); // Quitar del SpawnPoint
         }
+    }
+
+    public void SetShouldReleaseIngredient(bool value)
+    {
+        shouldReleaseIngredient = value;
+        if (!isIngredientMoving) return;
     }
 }

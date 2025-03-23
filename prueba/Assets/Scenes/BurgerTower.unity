@@ -1482,6 +1482,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartSprite: {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   cooldownSprites:
+  - {fileID: 21300000, guid: ff24b0a138a2a88468ee14e07ae9d657, type: 3}
+  - {fileID: 21300000, guid: 8e64f35d43411b240b81d4e7b65b5146, type: 3}
+  - {fileID: 21300000, guid: fc86cd94ca5001b4e8946fb3944afe6c, type: 3}
+  - {fileID: 21300000, guid: 8b043497608ec894dba3eac26676012d, type: 3}
+  - {fileID: 21300000, guid: 252b3e69b45b0c344b99586c68072026, type: 3}
   - {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   skillButton: {fileID: 1520436088}
   cooldownTime: 30
@@ -6249,8 +6254,10 @@ MonoBehaviour:
   horizontalLimit: 0.5
   initialHeightIncrement: 0.15
   currentIngredient: {fileID: 0}
+  isIngredientMoving: 0
   finalIngredientPrefab: {fileID: 1349614670}
   ingredientesDestruidos: 0
+  shouldReleaseIngredient: 0
 --- !u!212 &1346894106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7649,6 +7656,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartSprite: {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   cooldownSprites:
+  - {fileID: 21300000, guid: ff24b0a138a2a88468ee14e07ae9d657, type: 3}
+  - {fileID: 21300000, guid: 8e64f35d43411b240b81d4e7b65b5146, type: 3}
+  - {fileID: 21300000, guid: fc86cd94ca5001b4e8946fb3944afe6c, type: 3}
+  - {fileID: 21300000, guid: 8b043497608ec894dba3eac26676012d, type: 3}
+  - {fileID: 21300000, guid: 252b3e69b45b0c344b99586c68072026, type: 3}
   - {fileID: 21300000, guid: d1a21bfd54a5e6d4fbe4883985391f87, type: 3}
   skillButton: {fileID: 1520436088}
   cooldownTime: 30

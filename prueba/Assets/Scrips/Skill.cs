@@ -38,6 +38,12 @@ public class Skill : MonoBehaviour
             return;
         }
 
+        spawnPoint.SetSkillActive(true); // Avisar al SpawnPoint que la habilidad está activa
+
+        // Aplicar efectos de la habilidad...
+
+        Invoke("DeactivateSkill", skillDuration);
+
         if (!PuedeActivarHabilidad())
         {
             Debug.Log("Habilidad bloqueada porque el ingrediente ya cayó o no hay ingrediente.");
@@ -46,6 +52,27 @@ public class Skill : MonoBehaviour
 
         Debug.Log("Habilidad ACTIVADA correctamente.");
         StartCoroutine(HandleSkill());
+    }
+
+    void DeactivateSkill()
+    {
+        spawnPoint.SetSkillActive(false);
+
+        // Asegurar que el ingrediente NO se suelte automáticamente
+        if (spawnPoint.currentIngredient != null)
+        {
+            Rigidbody2D rb = spawnPoint.currentIngredient.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;  // Bloquea la caída automática
+                rb.velocity = Vector2.zero; // Detiene cualquier movimiento
+            }
+
+            spawnPoint.isIngredientMoving = false; // Evita que se mueva automáticamente
+            spawnPoint.shouldReleaseIngredient = false; // No se suelta solo
+        }
+
+        Debug.Log("Habilidad desactivada, el ingrediente sigue en el Spawn.");
     }
 
     private IEnumerator HandleSkill()
