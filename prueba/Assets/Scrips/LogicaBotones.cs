@@ -25,7 +25,7 @@ public class LogicaBotones : MonoBehaviour
     public void Jugar()
     {
         Time.timeScale = 1f;
-        juegoPausadoGlobal = false;
+        /*juegoPausadoGlobal = false;
         ReiniciarIngredientes();
 
         SpawnPoint spawnPoint = FindObjectOfType<SpawnPoint>(true);
@@ -55,11 +55,16 @@ public class LogicaBotones : MonoBehaviour
         if (panelJuego != null) panelJuego.SetActive(true);
         if (panelPausa != null) panelPausa.SetActive(false);
         if (panelGameOver != null) panelGameOver.SetActive(false);
+        */
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Prueba");
+
+        Debug.Log("Juego cargado");
     }
 
     public void MenuPrincipal()
     {
-        Time.timeScale = 1f;
+        /*Time.timeScale = 1f;
         juegoPausadoGlobal = false;
 
         ReiniciarIngredientes();
@@ -93,14 +98,12 @@ public class LogicaBotones : MonoBehaviour
         if (panelMenuPrincipal != null) panelMenuPrincipal.SetActive(true);
         if (panelJuego != null) panelJuego.SetActive(false);
 
-        Debug.Log("Regresando al menú principal sin eliminar ingredientes.");
+        Debug.Log("Regresando al menú principal sin eliminar ingredientes.");*/
     }
 
     public void ReiniciarJuego()
     {
-        Time.timeScale = 1f;
-        juegoPausadoGlobal = false;
-
+        /*
         ReiniciarIngredientes(); // Borrar ingredientes
 
         SpawnPoint spawnPoint = FindObjectOfType<SpawnPoint>(true);
@@ -141,10 +144,29 @@ public class LogicaBotones : MonoBehaviour
         SkillButton skillButton = FindObjectOfType<SkillButton>();
         if (skillButton != null)
         {
-            skillButton.ResetSkillButton();
+            skillButton.ResetSkill();
+        }
+        */
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Juego reiniciado correctamente.");
+        juegoPausadoGlobal = false;
+        
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.ResetScore();
+            ScoreManager.Instance.StartCounting();
         }
 
-        Debug.Log("Juego reiniciado correctamente.");
+        if (LifeManager.Instance != null)
+        {
+            LifeManager.Instance.ReiniciarContador();
+        }
+
+        if (LifeManager.Instance != null)
+        {
+            LifeManager.Instance.ReiniciarContador();
+        }
     }
 
     void ReiniciarIngredientes()

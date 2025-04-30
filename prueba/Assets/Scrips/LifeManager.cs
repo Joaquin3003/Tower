@@ -7,7 +7,7 @@ public class LifeManager : MonoBehaviour
 {
     public static LifeManager Instance;
 
-    private int ingredientesRestantes = 4; // Comienza en 4 e irá bajando hasta 0
+    public int ingredientesRestantes = 4; // Comienza en 4 e irá bajando hasta 0
     private bool isCounting = true; // Controla si el contador está activo
 
     public Text textoIngredientes; // Referencia al texto UI que muestra los ingredientes restantes

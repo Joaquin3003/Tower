@@ -13,7 +13,7 @@ public class Volumen : MonoBehaviour
     public Slider slider;
 
     private AudioSource audioMusica;
-    private bool MusicaActivado = true;
+    //private bool MusicaActivado = true;
 
     void Start()
     {

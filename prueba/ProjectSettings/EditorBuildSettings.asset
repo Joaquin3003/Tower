@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/BurgerTower.unity
+    path: Assets/Scenes/Menu.unity
     guid: 518df6dbcc767034e8d1c7ec46369365
+  - enabled: 1
+    path: Assets/Scenes/Juego.unity
+    guid: 985dab3a896d24c47aea8216ad82b576
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: a709268a62a019a4582b895482bd0ed5, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ff64c8671b994d04d8879b397a4b5a66, type: 2}

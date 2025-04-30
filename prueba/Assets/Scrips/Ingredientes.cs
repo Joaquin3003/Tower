@@ -11,8 +11,10 @@ public class Ingredientes : MonoBehaviour
     private GameOver gameOverManager;
 
 
+
     void Start()
     {
+        hasCollided=false;
         gameOverTriggered = false;
         gameOverManager = FindObjectOfType<GameOver>();
 
@@ -40,23 +42,23 @@ public class Ingredientes : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("Base") && !hasCollided)
+        if (!hasCollided && collision.gameObject.CompareTag("Base"))
         {
             hasCollided = true;
-            spawner.OnIngredientLanded(gameObject); // PASAMOS EL INGREDIENTE COMO PARÁMETRO
-
-            float offset = Mathf.Abs(transform.position.x - collision.transform.position.x);
-            int puntos = (offset < 0.1f) ? 15 : 10;
-            ScoreManager.Instance.AddScore(puntos);
+            spawner.OnIngredientLanded(gameObject);
+            // Desactiva la física para que el ingrediente quede fijo en su lugar
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            // Genera el siguiente ingrediente
+            //spawner.SpawnNextIngredient();
+            //spawner.SpawnNextIngredient();
+            //spawner.SpawnNextIngredient();
         }
 
         if (collision.gameObject.CompareTag("Borde") && !gameOverTriggered)
-        {
-            // Incrementamos el contador de ingredientes destruidos
-            spawner.ingredientesDestruidos++;
-
-            // Comprobamos si ya se han destruido más de 4 ingredientes
-            if (spawner.ingredientesDestruidos >= 4)
+        {   
+            spawner.ingredientesDestruidos++; // Incrementamos el contador de ingredientes destruidos
+            
+            if (spawner.ingredientesDestruidos >= 4) // Comprobamos si ya se han destruido más de 4 ingredientes
             {
                 gameOverTriggered = true;
                 spawner.DisableSpawning();
@@ -77,19 +79,6 @@ public class Ingredientes : MonoBehaviour
         }
     }
 
-    /*void OnBecameInvisible()
-    {
-        GameObject panelMenu = GameObject.Find("PanelMenuPrincipal"); // Busca el panel en la escena
-
-        if (panelMenu == null || !panelMenu.activeSelf) // Si no está en el menú, destruye el ingrediente
-        {
-            if (LifeManager.Instance != null)
-            {
-                LifeManager.Instance.PerderIngrediente();
-            }
-            Destroy(gameObject);
-        }
-    }*/
 
     public void SoltarIngrediente()
     {

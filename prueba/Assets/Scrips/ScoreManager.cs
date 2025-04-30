@@ -77,5 +77,6 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         score = 0; // Solo reinicia el puntaje actual, no el máximo
+        Debug.Log("Score reiniciado a: " + score);
     }
 }

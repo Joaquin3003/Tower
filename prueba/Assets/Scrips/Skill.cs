@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Skill : MonoBehaviour
+/*public class Skill : MonoBehaviour
 {
     public SpawnPoint spawnPoint; // Referencia al SpawnPoint
     public Button skillButton;    // Botón en la UI para activar la habilidad
@@ -156,3 +156,4 @@ public class Skill : MonoBehaviour
         Debug.Log("Habilidad desactivada correctamente.");
     }
 }
+*/
