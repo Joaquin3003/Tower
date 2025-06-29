@@ -7,6 +7,7 @@ using UnityEngine.UI;
     {
         [Header("Componentes")]
         public Image abilityImage; // Imagen del botón
+        public Image effectImage;
 
         [Header("Array del cooldown")]
         public Sprite[] cooldownSprites; // Array de sprites para el botón
@@ -39,13 +40,15 @@ using UnityEngine.UI;
                 }
             }
         }
-        // Lógica para activar la habilidad
+        
         public void UseAbility()
         {
             if (isReady)
             {
                 GameplayController.instance.ActivateFreeze();
-                ResetAbility();
+            effectImage.gameObject.SetActive(true);
+            StartCoroutine(AnimateEffect());
+            ResetAbility();
             }
         }
         private void ResetAbility()
@@ -61,5 +64,32 @@ using UnityEngine.UI;
         Color tempColor = abilityImage.color;
         tempColor.a = alpha;
         abilityImage.color = tempColor;
+    }
+    private IEnumerator AnimateEffect()
+    {
+        effectImage.transform.localScale = Vector3.zero;
+        effectImage.gameObject.SetActive(true);
+
+        float scaleDuration = 0.5f;
+        float elapsed = 0f;
+        Vector3 startScale = Vector3.zero;
+        Vector3 endScale = Vector3.one * 55;
+
+        // Animar entrada (escalado)
+        while (elapsed < scaleDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / scaleDuration;
+            effectImage.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            yield return null;
+        }
+
+        effectImage.transform.localScale = endScale;
+
+        // Permanecer activo durante la duración de la habilidad
+        yield return new WaitForSeconds(GameplayController.instance.skillDuration);
+
+        // Ocultar el efecto
+        effectImage.gameObject.SetActive(false);
     }
 }

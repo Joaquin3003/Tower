@@ -171,3 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac60bd995cf00c49a58c2be792adafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 0
+  fallSound: {fileID: 0}
+  fallClip: {fileID: 8300000, guid: b888139feb432594d8b0454a1379e7a7, type: 3}

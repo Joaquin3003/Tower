@@ -12,14 +12,20 @@ public class GameplayController : MonoBehaviour
     public static GameplayController instance;
     public Spawner spawner;
     public CameraScript cameraScript;
+    public Transform spawnPoint;
+    public int cameraCount = 3;
     private int moveCount;
     public float cameraHeight = 2.0f;
+
+    [Header("Habilidad")]
     public bool isFrozen = false;
     public int skillDuration = 5;
+    public float cervezaFrozenX;
 
     [Header("Vidas")]
     public int lives = 3;
     public Text vidasUI;
+    public AudioClip loseLifeSound;
 
     [Header("Puntos")]
     public int score = 0;
@@ -60,8 +66,8 @@ public class GameplayController : MonoBehaviour
     }
     void DetectInput()
     {
-        // Para mouse (PC)
-        if (Input.GetMouseButtonDown(0) && currentIngredient != null)
+        
+        if (Input.GetMouseButtonDown(0) && currentIngredient != null) //para mouse
         {
             if (!IsPointerOverUI())
             {
@@ -73,8 +79,8 @@ public class GameplayController : MonoBehaviour
             }
         }
 
-        // Para touch (mobile)
-        if (Input.touchCount > 0)
+        
+        if (Input.touchCount > 0) //para touch
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
@@ -117,19 +123,42 @@ public class GameplayController : MonoBehaviour
     {
         moveCount++;
 
-        if(moveCount == 3)
+        if(moveCount == cameraCount)
         {
             moveCount = 0;
             cameraScript.targetPos.y += cameraHeight;
         }
     }
+
+    public void CheckTowerHeight()
+    {
+        float highestY = float.MinValue;
+
+        foreach (var ingrediente in GameObject.FindGameObjectsWithTag("ingredientes"))
+        {
+            if (ingrediente.transform.position.y > highestY)
+            {
+                highestY = ingrediente.transform.position.y;
+            }
+        }
+
+        float verticalDistanceToSpawn = spawnPoint.position.y - highestY;
+
+        if (verticalDistanceToSpawn < 4f) // < Altura de la camara
+        {
+            cameraScript.targetPos.y += cameraHeight;
+        }
+    }
+
     public void LoseLife()
     {
         lives--;
         UpdateLivesUI();
-
+        Debug.Log("Antes de sonar");
+        AudioManager.Instance.PlaySound(loseLifeSound);
+        Debug.Log("Después de sonar");
         Debug.Log("Vidas restantes: " + lives);
-        if (lives < 1)
+        if (lives <= 0)
         {
             GameOver();
         }
@@ -168,6 +197,9 @@ public class GameplayController : MonoBehaviour
     public void ActivateFreeze()
     {
         isFrozen = true;
+        if (currentIngredient != null)
+            cervezaFrozenX = currentIngredient.transform.position.x;
+        AudioManager.Instance.PlaySound(AudioManager.Instance.beerSound);
         Invoke("DeactivateFreeze", skillDuration);
     }
 

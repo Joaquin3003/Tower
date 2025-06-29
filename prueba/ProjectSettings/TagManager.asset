@@ -16,6 +16,7 @@ TagManager:
   - Base
   - SpawnPoint
   - Corazon
+  - AudioManager
   layers:
   - Default
   - TransparentFX

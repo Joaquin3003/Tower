@@ -12,7 +12,7 @@ public class Ingredient : MonoBehaviour
     private bool gameOver;
     private bool ignoreCollision;
     private bool ignoreTrigger;
-    
+    private bool hasLanded = false;
     private void Awake()
     {
         ingrediente = GetComponent<Rigidbody2D>();
@@ -41,14 +41,18 @@ public class Ingredient : MonoBehaviour
         {
             Vector3 temp = transform.position;
             temp.x += move_Speed * Time.deltaTime;
-            if(temp.x > max_x)
+
+            if (temp.x > max_x)
             {
+                temp.x = max_x;
                 move_Speed *= -1f;
             }
-            else if(temp.x < min_x)
+            else if (temp.x < min_x)
             {
+                temp.x = min_x;
                 move_Speed *= -1f;
             }
+
             transform.position = temp;
         }
     }
@@ -61,14 +65,18 @@ public class Ingredient : MonoBehaviour
         ingrediente.gravityScale = 1f;
     }
 
-    void OnLanded()
+    public void OnLanded()
     {
-        if (gameOver) return;
+        if (gameOver || hasLanded) return;
+
+        hasLanded = true; //nos aseguramos que solo se ejecute una vez
         ignoreCollision = true;
         ignoreTrigger = true;
 
+        AudioManager.Instance.PlaySound(AudioManager.Instance.fallIngredientSound); // Solo se reproduce una vez
+
         GameplayController.instance.SpawnNewIngredient();
-        GameplayController.instance.MoveCamera();
+        GameplayController.instance.CheckTowerHeight();
         GameplayController.instance.AddScore(10);
     }
 
@@ -79,15 +87,9 @@ public class Ingredient : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D target)
     {
-        if (ignoreCollision) return;
+        if (ignoreCollision || hasLanded) return;
 
-        if(target.gameObject.tag == "Base")
-        {
-            Invoke("OnLanded", 0.1f);
-            ignoreCollision = true;
-        }
-
-        if (target.gameObject.tag == "ingredientes")
+        if (target.gameObject.CompareTag("Base") || target.gameObject.CompareTag("ingredientes"))
         {
             Invoke("OnLanded", 0.1f);
             ignoreCollision = true;
@@ -101,6 +103,7 @@ public class Ingredient : MonoBehaviour
         if(target.tag == "Borde")
         {
             CancelInvoke("OnLanded");
+            Destroy(gameObject);
             ignoreTrigger = true;
         }
     }
